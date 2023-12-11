@@ -12,6 +12,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -43,14 +44,14 @@ public class ChildProfileEntity {
     @Column(name = "picture")
     private byte[] picture;
 
-  /*  @OneToMany(mappedBy = "child", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "child", cascade = CascadeType.ALL)
     private List<DiseaseEntity> disease;
 
     @OneToMany(mappedBy = "child", cascade = CascadeType.ALL)
     private List<AppointmentEntity> appointment;
 
     @OneToMany(mappedBy = "child", cascade = CascadeType.ALL)
-    private List<Vaccination> vaccination;*/
+    private List<Vaccination> vaccination;
 
     @CreationTimestamp
     @Column(name = "created_at")
