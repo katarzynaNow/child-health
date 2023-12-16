@@ -12,6 +12,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
+import java.util.EnumSet;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 
@@ -45,7 +48,7 @@ public class DiseaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name="symptom_1")
-    private Symptom symptom1;//todo list of symptoms instead of 3
+    private Symptom symptom1;
 
     @Enumerated(EnumType.STRING)
     @Column(name="symptom_2")
