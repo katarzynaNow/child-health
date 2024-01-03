@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 @Mapper
 public interface DiseaseMapper {
 
-    DiseaseEntity diseaseDtoToDiseaseEntity (DiseaseDto dto);
+    DiseaseEntity dtoToEntity(DiseaseDto dto);
 
-    DiseaseDto diseaseEntityToDiseaseDto (DiseaseEntity entity);
+    DiseaseDto entityToDto(DiseaseEntity entity);
 }

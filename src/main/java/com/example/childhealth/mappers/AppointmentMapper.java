@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 @Mapper
 public interface AppointmentMapper {
 
-    AppointmentEntity appointmentDtoToAppointmentEntity (AppointmentDto dto);
+    AppointmentEntity dtoToEntity(AppointmentDto dto);
 
-    AppointmentDto appointmentEntityToAppointmentDto (AppointmentEntity entity);
+    AppointmentDto entityToDto(AppointmentEntity entity);
 }

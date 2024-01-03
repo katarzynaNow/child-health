@@ -1,6 +1,8 @@
 package com.example.childhealth.service;
 
+import com.example.childhealth.dto.AppointmentDto;
 import com.example.childhealth.entity.AppointmentEntity;
+import com.example.childhealth.mappers.AppointmentMapper;
 import com.example.childhealth.repository.AppointmentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,15 +15,16 @@ import java.util.UUID;
 public class AppointmentService {
 
     private final AppointmentRepository appointmentRepository;
+    private final AppointmentMapper appointmentMapper;
 
     public List<AppointmentEntity> findAll(){
         return appointmentRepository.findAll();
     }
 
- /*   public AppointmentEntity saveAppointmentModelToEntity(AppointmentDto appointmentModel){
-        AppointmentEntity appointmentEntity = appointmentDtoToAppointmentEntity(appointmentModel);
+     public AppointmentEntity saveAppointmentModelToEntity(AppointmentDto appointmentModel){
+        AppointmentEntity appointmentEntity = appointmentMapper.dtoToEntity(appointmentModel);
         return appointmentRepository.save(appointmentEntity);
-    }*/
+    }
 
     public void save (AppointmentEntity appointment){
         appointmentRepository.save(appointment);

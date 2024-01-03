@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 @Mapper
 public interface ChildProfileMapper {
 
-    ChildProfileEntity childProfileDtoToChildProfileEntity (ChildProfileDto dto);
+    ChildProfileEntity dtoToEntity(ChildProfileDto dto);
 
-    ChildProfileDto childProfileEntityToChildProfileDto (ChildProfileEntity entity);
+    ChildProfileDto entityToDto(ChildProfileEntity entity);
 }
