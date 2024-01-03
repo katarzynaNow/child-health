@@ -8,5 +8,5 @@ import java.util.UUID;
 
 public interface AppointmentRepository extends JpaRepository<AppointmentEntity, UUID> {
 
-    List<AppointmentEntity> findByChildId(Integer childId);
+    List<AppointmentEntity> findByChildId(UUID childId);
 }

@@ -8,5 +8,5 @@ import java.util.UUID;
 
 public interface VaccinationRepository extends JpaRepository<Vaccination, UUID> {
 
-    List<Vaccination> findByChildId(Integer childId);
+    List<Vaccination> findByChildId(UUID childId);
 }

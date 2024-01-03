@@ -8,5 +8,5 @@ import java.util.UUID;
 
 public interface DiseaseRepository extends JpaRepository<DiseaseEntity, UUID> {
 
-    List<DiseaseEntity> findByChildId(Integer childId);
+    List<DiseaseEntity> findByChildId(UUID childId);
 }
