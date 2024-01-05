@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title th:text="${title}">"</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <section class="my-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <h1 th:text="${title}"></h1>
+                    <h3 th:text="${profile.name}"></h3>
+                    <br><br>
+
+                    <table class="table table-hover">
+                        <thead>
+                        <tr class="text-center">
+                            <th>Scope</th>
+                            <th>Age (in moths)</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Notes</th>
+                            <th></th>
+                            <th>Change status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="vacc : ${vaccinations}" class="text-center">
+                            <div th:if="${vacc.getChild().getId() == profile.id}">
+                            <div th:if="${vacc.getId() != editedId}">
+                            <td th:text="${vacc.getScope()}"></td>
+                            <td th:text="${vacc.getChildrenAgeInMonths()}"></td>
+                            <td th:text="${vacc.getName()}"></td>
+                            <td th:text="${vacc.getStatus().getName()}"></td>
+                            <td th:text="${vacc.getNotes()}"></td>
+                                <td>
+                                    <a class="btn btn-outline-primary btn-sm" th:href="@{/profiles/{profileId}/vaccination(editedId=${vacc.getId()}, profileId = ${profile.id})}">edit notes</a>
+                            </td>
+                            <td>
+                                <a th:if="${vacc.getStatus().name().equals('TO_ARRANGE')}" class="btn btn-success btn-sm"
+                                   th:href="@{/profiles/{profileId}/vaccination/update(id=${vacc.getId()},vacStatus='DONE', profileId = ${profile.id})}">done</a>
+                                <a th:if="${vacc.getStatus().name().equals('ARRANGED')}" class="btn btn-success btn-sm"
+                                   th:href="@{/profiles/{profileId}/vaccination/update(id=${vacc.getId()}, vacStatus='DONE', profileId = ${profile.id})}">done</a>
+                                <a th:if="${vacc.getStatus().name().equals('TO_ARRANGE')}" class="btn btn-primary btn-sm"
+                                   th:href="@{/profiles/{profileId}/vaccination/update(id=${vacc.getId()}, vacStatus='ARRANGED', profileId = ${profile.id})}">arranged</a>
+                                <a th:if="${vacc.getStatus().name().equals('TO_ARRANGE')}" class="btn btn-secondary btn-sm"
+                                   th:href="@{/profiles/{profileId}/vaccination/update(id=${vacc.getId()}, vacStatus='NOT_APPLICABLE', profileId = ${profile.id})}">n/a</a>
+                            </td>
+                            </div>
+                            </div>
+                            <div th:unless="${vacc.getId() != editedId}">
+                                <form method="post" th:action="@{/profiles/{profileId}/vaccination/edit/{id}(id=${editVaccination.getId()}, profileId = ${profile.id})}" th:object="${editVaccination}">
+                                    <td><input class="form-control" type="text" th:field="*{scope}" disabled> </td>
+                                    <td><input class="form-control" type="text" th:field="*{childrenAgeInMonths}" disabled> </td>
+                                    <td><input class="form-control" type="text" th:field="*{name}" disabled> </td>
+                                    <td><input class="form-control" type="text" th:field="*{status}" disabled> </td>
+                                    <td><input class="form-control" type="text" th:field="*{notes}"> </td>
+                                    <td><input class="form-control btn btn-primary" type="submit" value="Submit"></td>
+                                </form>
+                            </div>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+</body>
+</html>

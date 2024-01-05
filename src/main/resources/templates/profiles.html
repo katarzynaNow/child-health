@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE"></title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+          crossorigin="anonymous"></script>
+  <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+
+<!-- Main Navigation -->
+<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+  <a class="navbar-brand" th:href="@{/}">Child Health Record</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+          aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbar">
+    <ul class="navbar-nav ml-auto">
+
+    </ul>
+  </div>
+</nav>
+
+<!-- Content Section -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title th:text="${title}">"</title>
+</head>
+<body>
+
+<div>
+  <section class="my-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+
+          <h1 th:text="${title}"></h1>
+          <br><br>
+
+          <div class="container">
+            <div class="row" th:each="p: ${profiles}">
+              <div class="col-3 text-center">
+                <img style="height: 150px; max-width: 150px " class="image-fluid rounded" th:src="@{/profiles/file/{id} (id=${p.id})}" >
+              </div>
+              <div class="col-3 text-left">
+                <br>
+                <h3 th:text="${p.name}"></h3>
+                <h5 th:text="${p.birthDate}"></h5>
+
+              </div>
+              <div class="col-6">
+                <a class="btn btn-primary btn-sm" th:href="@{/profiles/{id}/diseaseRegister (id=${p.id})}">Disease Register</a>
+                <a class="btn btn-primary btn-sm" th:href="@{/profiles/{id}/appointments (id=${p.id})}">Appointments</a>
+                <a class="btn btn-primary btn-sm" th:href="@{/profiles/{id}/vaccination (id=${p.id})}">Vaccination schedule</a>
+                <a class="btn btn-primary btn-sm" th:href="@{/profiles/{id}/statistics (id=${p.id})}">Statistics</a>
+                <a class="btn btn-secondary btn-sm" th:href="@{/profiles/delete/{id}(id=${p.getId()})}">Delete profile</a>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="col-2">
+            <a th:href="@{/profiles/create}" class="btn btn-primary">Create new profile</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+</body>
+</html>
+
+<!-- Footer -->
+<footer class="container py-5">
+  <div class="row">
+    <div class="col-md-12">
+      <p class="text-muted">&copy; 2023 Katarzyna Noworyta. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+
+
+
+
+

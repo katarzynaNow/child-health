@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <title th:text="${title}">"</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+  <section class="my-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+
+          <h1 th:text="${title}"></h1>
+
+          <form method="post" th:action="@{/profiles/{profileId}/appointments/create (profileId = ${profileId})}" th:object="${newAppointment}">
+            <div class="form-group">
+              <label>Date: </label>
+              <input class="form-control" type="date" th:field="*{date}">
+              <span class="error-msg" th:if="${#fields.hasErrors('diagnosis')}">
+                The entered date is empty or in the wrong format.
+              </span>
+            </div>
+            <div class="form-group">
+              <label>Diagnosis: </label>
+              <input class="form-control" type="text" th:field="*{diagnosis}" >
+              <span class="error-msg" th:if="${#fields.hasErrors('diagnosis')}">
+                Diagnosis name should be between 2 and 30 characters long.
+              </span>
+            </div>
+            <div class="form-group">
+              <label>Medicines: </label>
+              <input class="form-control" type="text" th:field="*{medicines}" >
+              <span class="error-msg" th:if="${#fields.hasErrors('medicines')}">
+                Medicines description should be between 2 and 30 characters long.
+              </span>
+            </div>
+            <div class="form-group">
+              <label>Antibiotic (select form the list): </label>
+              <select class="form-control" th:field="*{antibiotic}">
+                <option th:value="true">yes</option>
+                <option th:value="false">no</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Notes: </label>
+              <input class="form-control" type="text" th:field="*{notes}" >
+              <span class="error-msg" th:if="${#fields.hasErrors('notes')}">
+                Notes should be no more than 200 characters long.
+              </span>
+            </div>
+            <div class="form-group">
+              <label>What disease does the visit concern? (select from the list): </label>
+              <select class="form-control" th:field="*{disease}">
+                <option th:each="id: ${diseasesId}" th:value="${id}" th:text="${id}"></option>
+              </select>
+              <span class="error-msg" th:if="${#fields.hasErrors('disease')}">
+                Disease id should not be empty.
+              </span>
+            </div>
+            <br>
+            <div class="row col-3">
+              <input class="form-control btn btn-primary col-9" type="submit" value="Submit">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+</body>
+</html>

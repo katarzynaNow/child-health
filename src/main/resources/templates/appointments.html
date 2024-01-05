@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <title th:text="${title}">"</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+  <section class="my-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+
+          <h1 th:text="${title}"></h1>
+          <h3 th:text="${profile.name}"></h3>
+          <br><br>
+
+          <table class="table table-hover">
+            <thead>
+            <tr class="text-center">
+              <th>#</th>
+              <th>Date</th>
+              <th>Diagnosis</th>
+              <th>Medicines</th>
+              <th>Antibiotic</th>
+              <th>Notes</th>
+              <th>Disease ID</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="a: ${appointments}" class="text-center">
+              <div th:if="${a.getId() != editedId}">
+                <div th:if="${a.getChild().getId() == profileId}">
+                <td th:text="${a.getId()}"></td>
+                <td th:text="${a.getDate()}"></td>
+                <td th:text="${a.getDiagnosis()}"></td>
+                <td th:text="${a.getMedicines()}"></td>
+                <td>
+                  <span th:if="${a.isAntibiotic() == true}" th:text="yes"></span>
+                  <span th:unless="${a.isAntibiotic() == true}" th:text="no"></span>
+                </td>
+                <td th:text="${a.getNotes()}"></td>
+                <td th:text="${a.getDisease().getId()}"></td>
+                <td class="row actions">
+                  <a class="btn btn-primary btn-sm col" th:href="@{/profiles/{profileId}/appointments(editedId=${a.getId()}, profileId = ${profile.id})}">Edit</a>
+                  <a class="btn btn-secondary btn-sm col" th:href="@{/profiles/{profileId}/appointments/delete/{id}(id=${a.getId()}, profileId = ${profile.id})}">Delete</a>
+                </td>
+                </div>
+              </div>
+              <div th:unless="${a.getId() != editedId}">
+                <form method="post" th:action="@{/profiles/{profileId}/appointments/edit/{id}(id=${editAppointment.getId()}, profileId = ${profile.id})}" th:object="${editAppointment}">
+                  <td><input class="form-control" type="number" th:field="*{id}" disabled> </td>
+                  <td><input class="form-control" type="date" th:field="*{date}"></td>
+                  <td><input class="form-control" type="text" th:field="*{diagnosis}"></td>
+                  <td><input class="form-control" type="text" th:field="*{medicines}"></td>
+                  <td>
+                    <select class="form-control" th:field="*{antibiotic}">
+                      <option th:value="true">yes</option>
+                      <option th:value="false">no</option>
+                    </select>
+                  </td>
+                  <td><input class="form-control" type="text" th:field="*{notes}"></td>
+                  <td><input class="form-control" type="text" th:field="*{disease}"></td>
+                  <td><input class="form-control btn btn-primary" type="submit" value="Submit"></td>
+                </form>
+              </div>
+            </tr>
+            </tbody>
+          </table>
+          <br>
+          <div class="row col-2">
+            <a class="btn btn-primary" th:href="@{/profiles/{profileId}/appointments/create (profileId = ${profile.id})}">Create new entry</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+</body>
+</html>

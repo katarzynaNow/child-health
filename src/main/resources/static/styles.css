@@ -1,0 +1,11 @@
+.actions {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.error-msg {
+    font-size: 0.8em;
+    color: red;
+    padding: 3px 0;
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <title th:text="${title}">"</title>
+  <h3 th:text="${profile.name}"></h3>
+</head>
+<body>
+
+<div layout:fragment="content">
+  <section class="my-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+
+          <h1 th:text="${title}"></h1>
+          <h3 th:text="${profile.name}"></h3>
+          <br><br>
+
+          <table class="table table-hover">
+            <thead>
+            <tr class="text-center">
+              <th>#</th>
+              <th>Name</th>
+              <th>Starting date</th>
+              <th>Ending date</th>
+              <th colspan="3">Symptoms</th>
+              <th>Appointment</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="d : ${diseases}" class="text-center">
+              <div th:if="${d.getId() != editedId}">
+                <div th:if="${d.getChild().getId() == profile.id}">
+                <td th:text="${d.getId()}"></td>
+                <td th:text="${d.getName()}"></td>
+                <td th:text="${d.getStartingDate()}"></td>
+                <td th:text="${d.getEndingDate()}"></td>
+                <td th:text="${d.getSymptom1().getName()}"></td>
+                <td th:text="${d.getSymptom2().getName()}"></td>
+                <td th:text="${d.getSymptom3().getName()}"></td>
+                <td>
+                  <span th:if="${d.getAppointments().isEmpty() == true}" th:text="no"></span>
+                  <span th:unless="${d.getAppointments().isEmpty() == true}" th:text="yes"></span>
+                </td>
+                <td class="row actions">
+                  <a class="btn btn-primary btn-sm col" th:href="@{/profiles/{profileId}/diseaseRegister(editedId=${d.getId()}, profileId = ${profile.id})}">Edit</a>
+                  <a class="btn btn-secondary btn-sm col" th:href="@{/profiles/{profileId}/diseaseRegister/delete/{id}(id=${d.getId()}, profileId = ${profile.id})}">Delete</a>
+                </td>
+              </div>
+              </div>
+              <div th:unless="${d.getId() != editedId}">
+                <form method="post" th:action="@{/profiles/{profileId}/diseaseRegister/edit/{id}(id=${editDisease.getId()}, profileId = ${profile.id})}" th:object="${editDisease}">
+                  <td><input class="form-control" type="number" th:field="*{id}" disabled> </td>
+                  <td><input class="form-control" type="text" th:field="*{name}"></td>
+                  <td><input class="form-control" type="date" th:field="*{startingDate}"></td>
+                  <td><input class="form-control" type="date" th:field="*{endingDate}"></td>
+                  <td>
+                    <select class="form-control" th:field="*{symptom1}">
+                      <option th:each="s: ${symptoms}" th:value="${s}" th:text="${s.getName()}"></option>
+                    </select>
+                  </td>
+                  <td>
+                    <select class="form-control" th:field="*{symptom2}">
+                      <option th:each="s: ${symptoms}" th:value="${s}" th:text="${s.getName()}"></option>
+                    </select>
+                  </td>
+                  <td>
+                    <select class="form-control" th:field="*{symptom3}">
+                      <option th:each="s: ${symptoms}" th:value="${s}" th:text="${s.getName()}"></option>
+                    </select>
+                  </td>
+                  <td><input class="form-control" type="text" th:field="*{appointments}" disabled> </td>
+                  <td><input class="form-control btn btn-primary" type="submit" value="Submit"></td>
+                </form>
+              </div>
+            </tr>
+            </tbody>
+          </table>
+          <br>
+          <div class="row col-2">
+            <a class="btn btn-primary" th:href="@{/profiles/{profileId}/diseaseRegister/create (profileId = ${profile.id})}">Create new entry</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+</body>
+</html>
