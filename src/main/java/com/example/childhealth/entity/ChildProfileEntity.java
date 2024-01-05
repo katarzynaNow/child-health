@@ -33,8 +33,8 @@ public class ChildProfileEntity {
 
     @NotNull
     @NotBlank
-    @Size(max = 50)
-    @Column(length = 50, name = "name")
+    @Size(max = 30)
+    @Column(length = 30, name = "name")
     private String name;
 
     @Column(name = "birth_date")
