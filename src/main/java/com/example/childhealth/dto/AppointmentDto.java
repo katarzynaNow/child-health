@@ -6,13 +6,13 @@ import jakarta.validation.constraints.Size;
 import lombok.Builder;
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Builder
 @Data
 public class AppointmentDto {
 
-    private LocalDateTime date;
+    private LocalDate date;
 
     @Size(min=2, max=30)
     private String diagnosis;

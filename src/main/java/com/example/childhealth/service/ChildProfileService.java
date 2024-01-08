@@ -39,11 +39,11 @@ public class ChildProfileService {
         childProfileRepository.deleteById(id);
     }
 
-    @Transactional
+   @Transactional
     public void saveChildProfileDtoToEntity(ChildProfileDto childProfileDto, MultipartFile file) throws IOException {
         childProfileDto.setPicture(file.getBytes());
         ChildProfileEntity entity = childProfileRepository.save(childProfileMapper.dtoToEntity(childProfileDto));
-        /*List<Vaccination> list = new ArrayList<>();
+        List<Vaccination> list = new ArrayList<>();
         list.add(new Vaccination("mandatory", "Hepatitis B","0", VacStatus.TO_ARRANGE, "",  entity));
         list.add(new Vaccination("mandatory", "BCG","0", VacStatus.TO_ARRANGE, "",  entity));
         list.add(new Vaccination("mandatory", "6in1","0", VacStatus.TO_ARRANGE, "",  entity));
@@ -68,6 +68,6 @@ public class ChildProfileService {
         list.add(new Vaccination("recommended", "Hepatitis A","24", VacStatus.TO_ARRANGE, "",  entity));
         list.add(new Vaccination("recommended", "Hepatitis A","30 - 36", VacStatus.TO_ARRANGE, "",  entity));
 
-        vaccinationRepository.saveAll(list);*/
+        vaccinationRepository.saveAll(list);
     }
 }

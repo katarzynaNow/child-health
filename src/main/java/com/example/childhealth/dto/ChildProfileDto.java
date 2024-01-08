@@ -4,7 +4,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Builder;
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Builder
 @Data
@@ -13,7 +13,7 @@ public class ChildProfileDto {
     @Size(min=2, max=30)
     private String name;
 
-    private LocalDateTime birthDate;
+    private LocalDate birthDate;
 
     private byte[] picture;
 

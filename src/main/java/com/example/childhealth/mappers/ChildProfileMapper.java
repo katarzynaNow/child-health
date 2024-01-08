@@ -11,3 +11,14 @@ public interface ChildProfileMapper {
 
     ChildProfileDto entityToDto(ChildProfileEntity entity);
 }
+
+/*public class ChildProfileMapper {
+    public static ChildProfileEntity dtoToEntity (ChildProfileDto model){
+        ChildProfileEntity entity = new ChildProfileEntity();
+        entity.setName(model.getName());
+        entity.setBirthDate(model.getBirthDate());
+        entity.setPicture(model.getPicture());
+
+        return entity;
+    }
+}*/

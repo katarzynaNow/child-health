@@ -11,10 +11,8 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.type.SqlTypes;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 
@@ -41,10 +39,10 @@ public class DiseaseEntity {
     private String name;
 
     @Column(name="starting_date")
-    private LocalDateTime startingDate;
+    private LocalDate startingDate;
 
     @Column(name="ending_date")
-    private LocalDateTime endingDate;
+    private LocalDate endingDate;
 
     @Enumerated(EnumType.STRING)
     @Column(name="symptom_1")

@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Builder;
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Builder
 @Data
@@ -14,9 +14,9 @@ public class DiseaseDto {
     @Size(min=2, max=30)
     private String name;
 
-    private LocalDateTime startingDate;
+    private LocalDate startingDate;
 
-    private LocalDateTime endingDate;
+    private LocalDate endingDate;
 
     private Symptom symptom1;
 

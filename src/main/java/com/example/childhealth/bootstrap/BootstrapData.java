@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
 @Component
 @RequiredArgsConstructor
 public class BootstrapData implements CommandLineRunner {
@@ -52,3 +53,4 @@ public class BootstrapData implements CommandLineRunner {
         }
     }
 }
+*/

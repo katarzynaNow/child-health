@@ -41,11 +41,12 @@ public class Vaccination {
     @JoinColumn(name = "child_id")
     private ChildProfileEntity child;
 
-    public Vaccination(String scope, String name, String childrenAgeInMonths, VacStatus status, String notes) {
+    public Vaccination(String scope, String name, String childrenAgeInMonths, VacStatus status, String notes, ChildProfileEntity child) {
         this.scope = scope;
         this.name = name;
         this.childrenAgeInMonths = childrenAgeInMonths;
         this.status = status;
         this.notes = notes;
+        this.child = child;
     }
 }
