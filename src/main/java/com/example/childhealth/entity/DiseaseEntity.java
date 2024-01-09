@@ -13,6 +13,7 @@ import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -68,8 +69,8 @@ public class DiseaseEntity {
     @JoinColumn(name = "child_id")
     private ChildProfileEntity child;
 
-    /*@OneToMany(mappedBy = "disease", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "disease", cascade = CascadeType.ALL)
     @Column(name="appointments")
-    private List<AppointmentEntity> appointments;*/
+    private List<AppointmentEntity> appointments;
 
 }

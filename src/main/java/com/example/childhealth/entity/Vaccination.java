@@ -6,6 +6,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
@@ -34,6 +35,9 @@ public class Vaccination {
     @Column(name="status")
     private VacStatus status;
 
+    @Column(name = "date")
+    private LocalDate date;
+
     @Column(name="notes")
     private String notes;
 
@@ -41,11 +45,12 @@ public class Vaccination {
     @JoinColumn(name = "child_id")
     private ChildProfileEntity child;
 
-    public Vaccination(String scope, String name, String childrenAgeInMonths, VacStatus status, String notes, ChildProfileEntity child) {
+    public Vaccination(String scope, String name, String childrenAgeInMonths, VacStatus status, LocalDate date, String notes, ChildProfileEntity child) {
         this.scope = scope;
         this.name = name;
         this.childrenAgeInMonths = childrenAgeInMonths;
         this.status = status;
+        this.date = date;
         this.notes = notes;
         this.child = child;
     }

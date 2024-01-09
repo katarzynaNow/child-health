@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -51,9 +52,10 @@ public class VaccinationController {
     }
 
     @PostMapping("/edit/{id}")
-    public String editNotes(String notes, @PathVariable UUID id) {
+    public String editDateAndNotes(String notes, LocalDate date, @PathVariable UUID id) {
         Vaccination existing = vaccinationService.findById(id);
         existing.setNotes(notes);
+        existing.setDate(date);
 
         vaccinationService.save(existing);
         return "redirect:/profiles/{profileId}/vaccination";

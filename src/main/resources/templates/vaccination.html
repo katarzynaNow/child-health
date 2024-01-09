@@ -24,6 +24,7 @@
                             <th>Age (in moths)</th>
                             <th>Name</th>
                             <th>Status</th>
+                            <th>Date</th>
                             <th>Notes</th>
                             <th></th>
                             <th>Change status</th>
@@ -37,9 +38,11 @@
                             <td th:text="${vacc.getChildrenAgeInMonths()}"></td>
                             <td th:text="${vacc.getName()}"></td>
                             <td th:text="${vacc.getStatus().getName()}"></td>
+                                <td th:if="${vacc.getDate() == null}"><span></span></td>
+                                <td th:unless="${vacc.getDate() == null}"><span th:text="${vacc.getDate()}"></span></td>
                             <td th:text="${vacc.getNotes()}"></td>
                                 <td>
-                                    <a class="btn btn-outline-primary btn-sm" th:href="@{/profiles/{profileId}/vaccination(editedId=${vacc.getId()}, profileId = ${profile.id})}">edit notes</a>
+                                    <a class="btn btn-outline-primary btn-sm" th:href="@{/profiles/{profileId}/vaccination(editedId=${vacc.getId()}, profileId = ${profile.id})}">edit</a>
                             </td>
                             <td>
                                 <a th:if="${vacc.getStatus().name().equals('TO_ARRANGE')}" class="btn btn-success btn-sm"
@@ -59,6 +62,7 @@
                                     <td><input class="form-control" type="text" th:field="*{childrenAgeInMonths}" disabled> </td>
                                     <td><input class="form-control" type="text" th:field="*{name}" disabled> </td>
                                     <td><input class="form-control" type="text" th:field="*{status}" disabled> </td>
+                                    <td><input class="form-control" type="date" th:field="*{date}"> </td>
                                     <td><input class="form-control" type="text" th:field="*{notes}"> </td>
                                     <td><input class="form-control btn btn-primary" type="submit" value="Submit"></td>
                                 </form>
