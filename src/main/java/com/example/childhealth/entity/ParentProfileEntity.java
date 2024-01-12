@@ -17,13 +17,13 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name="children_profiles")
+@Table(name="parents_profiles")
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChildProfileEntity {
+public class ParentProfileEntity {
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -38,25 +38,14 @@ public class ChildProfileEntity {
     @Column(length = 30, name = "name")
     private String name;
 
-    @Column(name = "birth_date")
-    private LocalDate birthDate;
+    @NotNull
+    @NotBlank
+    @Size(max = 30)
+    @Column(length = 30, name = "surname")
+    private String surname;
 
-    @Lob
-    @Column(name = "picture")
-    private byte[] picture;
-
-    @OneToMany(mappedBy = "child", cascade = CascadeType.ALL)
-    private List<DiseaseEntity> disease;
-
-    @OneToMany(mappedBy = "child", cascade = CascadeType.ALL)
-    private List<AppointmentEntity> appointment;
-
-    @OneToMany(mappedBy = "child", cascade = CascadeType.ALL)
-    private List<Vaccination> vaccination;
-
-    @ManyToOne
-    @JoinColumn(name = "parent")
-    private ParentProfileEntity parent;
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
+    private List<ChildProfileEntity> children;
 
     @CreationTimestamp
     @Column(name = "created_at")
