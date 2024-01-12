@@ -23,7 +23,6 @@ public class ChildProfileService {
 
     private final ChildProfileRepository childProfileRepository;
     private final VaccinationRepository vaccinationRepository;
-
     private final ChildProfileMapper childProfileMapper;
 
     public List<ChildProfileEntity> findAll() {
