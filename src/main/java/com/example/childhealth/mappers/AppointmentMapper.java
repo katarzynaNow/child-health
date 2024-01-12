@@ -12,16 +12,3 @@ public interface AppointmentMapper {
     AppointmentDto entityToDto(AppointmentEntity entity);
 }
 
-/*public class AppointmentMapper {
-    public static AppointmentEntity dtoToEntity(AppointmentDto model){
-        AppointmentEntity entity = new AppointmentEntity();
-        entity.setDate(model.getDate());
-        entity.setDiagnosis(model.getDiagnosis());
-        entity.setMedicines(model.getMedicines());
-        entity.setAntibiotic(model.isAntibiotic());
-        entity.setNotes(model.getNotes());
-        entity.setDisease(model.getDisease());
-
-        return entity;
-    }
-}*/
