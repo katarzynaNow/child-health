@@ -13,6 +13,6 @@ public class TestController {
 
     @GetMapping("/")
     public String showIndex(){
-        return "redirect:profiles";
+        return "redirect:parentProfiles";
     }
 }
