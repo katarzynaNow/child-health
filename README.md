@@ -15,5 +15,8 @@ The register consists of the following parts:
   
 - <b>Statistics</b> – summarizes the infomation and conclusions from the three previous sections. There is a graph showing what proportion of days from the begginning of the year to the current date the child was sick. The second graph shows the number of days the child was sick in each month. Statistics section also includes information on how many time san antibiotic was prescribed in 2023 and how many of the mandatory and reccomended vaccinations have already been done for child.   
 <br>
+
+## Technical assumptions  
+Child Health web application is based on data on diseases, doctor visits and vaccinations in 2023, entered by the user for each child profile and saved in the database. The entered data are validated in terms of whether they are not empty or the number of characters. In the cases of disease symptoms, prediscribed antibiotic or id of the disease to which the doctor’s visit realtes, the data is selected from a closed, drop-down list.
   
 
